@@ -39,7 +39,7 @@ function App() {
       <div className='content'>
         <p style={{ color: 'white' }}>Hi,</p><Typewriter className='typewriter'
           options={{
-            strings: ["I'm Full stack developer ", 'I bulid Scaleable Websites'],
+            strings: ["I'm Full stack developer ", 'I build Scaleable Websites'],
             autoStart: true,
             loop: true,
           }}
@@ -102,7 +102,7 @@ function App() {
         <Fade> <div className='prj-card'>
           <div className='prj-img'>
             <video muted={true} playsinline="" autoplay="" loop={true}>
-              <source src='New Tab - Google Chrome 2023-05-16 18-56-42.mp4' />
+              <source src='New Tab - Google Chrome 2023-05-16 18-56-42 .mp4' />
             </video>
           </div>
           <div className="prj-title">
