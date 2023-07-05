@@ -51,8 +51,8 @@ function App() {
         <div className='social-links'>
           <Link href='https://github.com/vatchans' target='_blank' ><div ><GitHubIcon /></div></Link>
           <Link href='https://www.linkedin.com/in/sree-vatchan-6a0855246' target='_blank'><div><LinkedInIcon /></div></Link>
-          <Link href='mailto:vatchans@gmail.com' target='_blank'><div><MailIcon /></div></Link>
-          <Link href=' https://wa.me/+919080555495' ><div><WhatsAppIcon /></div></Link>
+          <Link href='mailto:vatchans@gmail.com'><div><MailIcon /></div></Link>
+          
         </div>
       </div>
 
@@ -114,8 +114,8 @@ function App() {
             Textrovert is a dynamic chat application enabling real-time communication through text and voice messages. With expressive features like stickers, GIFs, and multimedia sharing (images, documents, videos, audio files, and location sharing), coordinating plans and sharing important information becomes seamless. Stay organized with online/offline status checks, searchability of previous messages, and the convenience of viewing YouTube videos directly within the chat window. Additionally, a typing indication feature ensures engaged conversations and prompt responses. Experience the power of Textrovert for enhanced connectivity and engagement in your personal and professional interactions.
           </div>
           <div className='prj-button'>
-            <Link href='https://github.com/vatchans/Textrovert--Chat-App-' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-            <Link href='https://exquisite-selkie-1bc399.netlify.app/'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
+            <Link href='https://github.com/vatchans/Textrovert--Chat-App-' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
+            <Link href='https://exquisite-selkie-1bc399.netlify.app/ ' target='_blank'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
           </div>
         </div></Fade>
 
@@ -141,8 +141,8 @@ function App() {
 
           </div>
           <div className='prj-button'>
-            <Link href='https://github.com/vatchans/Capstone-Project' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-            <Link href='https://643ea8b337e85d037ff07afe--venerable-marigold-437243.netlify.app/'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
+            <Link href='https://github.com/vatchans/Capstone-Project'target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
+            <Link href='https://643ea8b337e85d037ff07afe--venerable-marigold-437243.netlify.app/' target='_blank'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
           </div>
         </div>
         </Fade>
@@ -165,8 +165,8 @@ function App() {
             Experience the joy of music with Rhythm
           </div>
           <div className='prj-button'>
-            <Link href='https://magical-taffy-0e39f9.netlify.app/' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-            <Link href='https://magical-taffy-0e39f9.netlify.app/'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
+            <Link href='https://magical-taffy-0e39f9.netlify.app/' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
+            <Link href='https://magical-taffy-0e39f9.netlify.app/ 'target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
           </div>
         </div>
         </Fade>
@@ -188,8 +188,8 @@ function App() {
               Experience a seamless shopping journey with our secure and convenient checkout process, offering various payment options for a smooth transaction. Additionally, Juzslayy offers a user-friendly wishlist feature, enabling you to save sarees that catch your eye for future consideration and purchase.
             </div>
             <div className='prj-button'>
-              <Link href='https://github.com/vatchans/mini-project' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-              <Link href='https://regal-maamoul-9c11df.netlify.app/'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
+              <Link href='https://github.com/vatchans/mini-project' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
+              <Link href='https://regal-maamoul-9c11df.netlify.app/' target='_blank'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
             </div>
           </div></Fade>
         <Fade>
@@ -252,8 +252,8 @@ function App() {
           <div className='social-links'>
             <Link href='https://github.com/vatchans' target='_blank' ><div ><GitHubIcon /></div></Link>
             <Link href='https://www.linkedin.com/in/sree-vatchan-6a0855246' target='_blank'><div><LinkedInIcon /></div></Link>
-            <Link href='mailto:vatchans@gmail.com' target='_blank'><div><MailIcon /></div></Link>
-            <Link href=' https://wa.me/+919080555495' ><div><WhatsAppIcon /></div></Link>
+            <Link href='mailto:vatchans@gmail.com' ><div><MailIcon /></div></Link>
+       
           </div>
         </div>
       </Zoom>
