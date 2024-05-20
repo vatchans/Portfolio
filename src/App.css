@@ -38,7 +38,22 @@
   color: #495aff;
 
 }
-
+.experience {
+	padding: 20px 30px;
+	background: #fff;
+	box-shadow: 0 0.375rem 1.5rem 0 rgba(140, 152, 164, 0.125);
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+.experience h5 {
+	background: #ea4020;
+	display: inline-block;
+	font-size: 13px;
+	padding: 8px 14px;
+	border-radius: 20px;
+	color: #fff;
+}
 .coding {
   width: 30rem;
 }
