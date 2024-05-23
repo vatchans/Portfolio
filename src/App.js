@@ -46,7 +46,7 @@ function App() {
         />
         <p style={{ fontWeight: "400", fontSize: "15px", color: "rgb(153,163,174)", marginTop: "2%" }}>I specialize in full-stack web development using the MERN stack. With my expertise, I can create dynamic and responsive websites that meet the client's requirements. As a full-stack developer, I have a deep understanding of both front-end and back-end technologies and can develop applications that function seamlessly. Contact me to bring your website idea to life.</p>
         <div className='info'>
-          <Link href='resume.pdf' download><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Resume</Button></Link>
+          <Link href='https://drive.google.com/file/d/1_ZXzwrg3hHpdcI5zaJrXYsS6KPaDHusw/view?usp=sharing' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Resume</Button></Link>
         </div>
 
         <div className='social-links'>
