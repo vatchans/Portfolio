@@ -106,14 +106,15 @@ function App() {
     </div>
     <div className='abt'>
       <h1>Experience</h1>
-      <div class="container-fluid main-section bg-grey">
+      <div class="container-fluid main-section bg-grey mt-4">
         <div class="container">
           <div class="row">
             <div class="col-lg col-md-4 col-12">
               <div class="experience">
                 <div class="col-12">
                   <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}> <h4>AYUR AI</h4>
-                    <h5>June, 2023 – Present</h5></div>
+                    <h5>June, 2023 – Present</h5>
+                  </div>
                 </div>
                 <div class="col-12 ex-left">
                   <h4>Full Stack Engineer</h4>

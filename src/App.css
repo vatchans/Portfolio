@@ -557,4 +557,10 @@ textarea:focus {
   .about{
     margin-left:4rem;
   }
+  .abt{
+    padding:10px;
+  }
+  .experience h4 {
+    font-size: 20px;
+  }
 }
