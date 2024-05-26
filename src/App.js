@@ -90,11 +90,11 @@ function App() {
         <img src='JavaScript-01.png' className='skills-img'></img>
         <img src='logo192.png' className='skills-img'></img>
         <img src='Node-JS-01.png' className='skills-img'></img>
-        <img src='pngegg (1).png' className='skills-img'></img>
+        <img src='https://miro.medium.com/v2/resize:fit:512/1*doAg1_fMQKWFoub-6gwUiQ.png' className='skills-img'></img>
         <img src='https://isagebrum.com/images/technology/dynamo_db-image.svg' className='skills-img'></img>
         <img src='pngegg.png' className='skills-img'></img>
         <img src='pngwing.com (4).png' className='skills-img'></img>
-        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png' className='skills-img'></img>
+        <img src='https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png' className='skills-img'></img>
         <img src='kotlin-2-logo-png-transparent.png' className='skills-img'></img>
 
         <img src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5wggXFTVLF0t58SuNrl4mii6x96w0CN3ef84eLfYUDImc4GBwxv-vWGufrmiDhSHXb6_9_PQz_sh8hdbt5oruCKFNxCl2QUdhzzUAZNNQVIiIZzXq58zkwtfohLsOAUqxArZ_XXYw-No/s1600/JetpackCompose_logo.png' className='skills-img'></img>
