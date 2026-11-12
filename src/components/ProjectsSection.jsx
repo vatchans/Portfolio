@@ -1,161 +1,347 @@
-import React from 'react';
-import { Fade } from "react-awesome-reveal";
-import Link from '@mui/material/Link';
-import Button from '@mui/material/Button';
+import React, { useRef, useState, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TiltCard from './TiltCard';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { initParallaxLayers } from './useScrollAnimations';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const projects = [
+  {
+    id: 'ayurai',
+    title: 'Ayur AI',
+    subtitle: 'AI-Powered Healthcare Platform',
+    description:
+      'A comprehensive digital-health platform integrating AI for personalised Ayurvedic treatments, doctor consultations, medicine ordering, and health analytics. Built and maintained production-grade backend infrastructure serving real users.',
+    tech: ['Node.js', 'React.js', 'AWS', 'DynamoDB', 'Kotlin', 'Docker', 'Express.js'],
+    video: 'Milky Way Taste the goodness of dairy Power - Google Chrome 2023-05-16 18-12-00.mp4',
+    github: 'https://github.com/vatchans',
+    live: 'https://ayurai.in',
+    color: '#38bdf8',
+    icon: '🏥',
+    type: 'Professional',
+    highlights: ['Production App', 'AWS Cloud', 'Mobile + Web'],
+  },
+  {
+    id: 'textrovert',
+    title: 'Textrovert',
+    subtitle: 'Real-time Chat Application',
+    description:
+      'A feature-rich chat app with real-time messaging, voice messages, stickers, GIFs, multimedia sharing, YouTube previews inline, online/offline status, and message search — all powered by WebSockets.',
+    tech: ['React.js', 'Node.js', 'Socket.io', 'MongoDB', 'Express.js'],
+    video: 'New Tab - Google Chrome 2023-05-16 18-56-42 .mp4',
+    github: 'https://github.com/vatchans/Textrovert--Chat-App-',
+    live: 'https://exquisite-selkie-1bc399.netlify.app/',
+    color: '#818cf8',
+    icon: '💬',
+    type: 'MERN Stack',
+    highlights: ['Real-time', 'Socket.io', 'Media Sharing'],
+  },
+  {
+    id: 'milkyway',
+    title: 'Milky Way CRM',
+    subtitle: 'Customer Relationship Management System',
+    description:
+      'A full-featured CRM for a dairy business with three role-based user types: Admin dashboard for inventory/orders, Customer portal with payments, and Customer Executive workflow for complaint resolution with email notifications.',
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js'],
+    video: 'Milky Way Taste the goodness of dairy Power - Google Chrome 2023-05-16 18-12-00.mp4',
+    github: 'https://github.com/vatchans/Capstone-Project',
+    live: 'https://643ea8b337e85d037ff07afe--venerable-marigold-437243.netlify.app/',
+    color: '#34d399',
+    icon: '🥛',
+    type: 'Full Stack',
+    highlights: ['Role-Based Auth', 'Dashboard', 'Payment Gateway'],
+  },
+  {
+    id: 'pizza',
+    title: 'Pizza Crave',
+    subtitle: 'Online Pizza Ordering & Inventory System',
+    description:
+      'A complete pizza delivery web platform featuring customizable orders, real-time order tracking, payment processing, inventory decrementing, and admin stock management.',
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+    img: 'Screenshot (50).png',
+    github: 'https://github.com/vatchans/Pizza-app-Font-end',
+    live: 'https://sprightly-chebakia-3974c5.netlify.app/',
+    color: '#f59e0b',
+    icon: '🍕',
+    type: 'MERN Stack',
+    highlights: ['Order Tracking', 'Inventory Sync', 'Custom Orders'],
+  },
+  {
+    id: 'hallbooking',
+    title: 'Hall Booking API',
+    subtitle: 'High-Concurrency Reservation Backend',
+    description:
+      'A robust RESTful API for conference hall reservations handling simultaneous booking requests, slot collision avoidance, room availability calendars, and customer billing calculations.',
+    tech: ['Node.js', 'Express.js', 'REST APIs', 'Postman'],
+    img: 'Screenshot (52).png',
+    github: 'https://github.com/vatchans/Hall-Booking',
+    live: null,
+    color: '#ec4899',
+    icon: '🏛️',
+    type: 'Backend',
+    highlights: ['Conflict Prevention', 'RESTful Design', 'Optimized Queries'],
+  },
+  {
+    id: 'watertank',
+    title: 'Smart Water Tank System',
+    subtitle: 'IoT Level Monitoring & Alert System',
+    description:
+      'An IoT-based water tank monitoring system with real-time level tracking, predictive supply-day calculations, email alerts when levels drop, remote motor control, and monthly usage & billing dashboards.',
+    tech: ['React.js', 'Node.js', 'IoT Sensors', 'AWS', 'Email Alerts'],
+    img: 'Screenshot (53).png',
+    github: null,
+    live: null,
+    color: '#a78bfa',
+    icon: '💧',
+    type: 'IoT + Web',
+    highlights: ['IoT Integration', 'Real-time Alerts', 'Award Winner 🏆'],
+  },
+];
+
+function ProjectCard({ project }) {
+  return (
+    <div className="project-grid-card">
+      <TiltCard
+        className="prj-card-tilt-wrap"
+        maxTilt={7}
+        glare={true}
+        scale={1.015}
+        perspective={1000}
+      >
+        <div className="prj-card enhanced-prj-card" style={{ '--prj-color': project.color }}>
+          {/* Media preview with Tom de Koning window parallax */}
+          <div className="prj-img">
+            {project.video ? (
+              <video
+                className="prj-media-window"
+                muted
+                playsInline
+                autoPlay
+                loop
+                preload="metadata"
+                aria-label={`${project.title} demo video`}
+              >
+                <source src={project.video} />
+              </video>
+            ) : project.img ? (
+              <img
+                className="prj-media-window"
+                src={project.img}
+                alt={`${project.title} screenshot`}
+                style={{ objectFit: 'contain' }}
+              />
+            ) : null}
+
+            <div className="prj-img-overlay" aria-hidden="true" />
+
+            <div
+              className="prj-type-badge"
+              style={{
+                background: `${project.color}22`,
+                borderColor: `${project.color}66`,
+              }}
+            >
+              {project.icon} {project.type}
+            </div>
+          </div>
+
+          {/* Body Content */}
+          <div className="prj-body">
+            <div className="prj-title">
+              <div>
+                <p>{project.title}</p>
+                <span>{project.subtitle}</span>
+              </div>
+            </div>
+
+            <div className="prj-highlights">
+              {project.highlights.map((h) => (
+                <span key={h} className="prj-highlight-pill" style={{ '--hl-color': project.color }}>
+                  {h}
+                </span>
+              ))}
+            </div>
+
+            <div className="prj-discription">{project.description}</div>
+
+            <div className="prj-tech-stack">
+              {project.tech.map((t) => (
+                <span key={t} className="prj-tech-pill">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <div className="prj-actions-row">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="prj-action-btn prj-action-secondary"
+                  aria-label={`View ${project.title} source code on GitHub`}
+                >
+                  <GitHubIcon fontSize="small" />
+                  <span>Source</span>
+                </a>
+              )}
+              {project.live && project.live !== '#' && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="prj-action-btn prj-action-primary"
+                  aria-label={`Open live demo of ${project.title}`}
+                >
+                  <span>Live Demo</span>
+                  <OpenInNewIcon fontSize="small" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </TiltCard>
+    </div>
+  );
+}
 
 const ProjectsSection = () => {
-    const projects = [
+  const containerRef = useRef(null);
+  const [filter, setFilter] = useState('All');
+  const types = ['All', 'Professional', 'Full Stack', 'MERN Stack', 'IoT + Web'];
+  const filtered = filter === 'All' ? projects : projects.filter((p) => p.type === filter);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let cleanupParallax = () => { };
+
+    const ctx = gsap.context(() => {
+      // 1. Header reveal scrubbed to scroll
+      gsap.fromTo(
+        '.projects-header-anim',
+        { y: 40, opacity: 0.35 },
         {
-            title: "Ayur AI",
-            description: "A comprehensive healthcare platform integrating AI for personalized Ayurvedic treatments. Features include doctor consultations, medicine ordering, and AI-driven health analysis.",
-            tech: "MERN Stack, AWS, Python",
-            video: "Milky Way Taste the goodness of dairy Power - Google Chrome 2023-05-16 18-12-00.mp4",
-            github: "https://github.com/vatchans",
-            link: "https://ayurai.in"
-        },
-        {
-            title: "E-Commerce Dashboard",
-            description: "A full-featured admin dashboard for managing products, orders, and users. Includes real-time analytics and inventory management.",
-            tech: "React, Node.js, MongoDB",
-            video: "Milky Way Taste the goodness of dairy Power - Google Chrome 2023-05-16 18-12-00.mp4",
-            github: "https://github.com/vatchans",
-            link: "#"
-        },
-        {
-            title: "Social Media App",
-            description: "A real-time social networking application with features like posts, likes, comments, and real-time chat functionality.",
-            tech: "MERN Stack, Socket.io",
-            video: "Milky Way Taste the goodness of dairy Power - Google Chrome 2023-05-16 18-12-00.mp4",
-            github: "https://github.com/vatchans",
-            link: "#"
+          y: 0,
+          opacity: 1,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 85%',
+            end: 'top 55%',
+            scrub: 1.0,
+          },
         }
-    ];
+      );
 
-    return (
-        <div className='abt'>
-            <h1>Academic Projects</h1>
-            <Fade cascade damping={0.1}>
-                <div className='projects'>
-                    <Fade> <div className='prj-card'>
-                        <div className='prj-img'>
-                            <video muted={true} playsinline="" autoplay="" loop={true}>
-                                <source src='New Tab - Google Chrome 2023-05-16 18-56-42 .mp4' />
-                            </video>
-                        </div>
-                        <div className="prj-title">
-                            <p>Textrovert <span>  Real time Chat Application </span></p>
-                            <div className='prj-logo'><img src='chatlog02 (1).png'></img></div>
-                        </div>
+      // 2. Tom de Koning window parallax on each project media preview
+      const mediaElements = container.querySelectorAll('.prj-media-window');
+      mediaElements.forEach((media) => {
+        const card = media.closest('.project-grid-card');
+        if (!card) return;
+        gsap.fromTo(
+          media,
+          { yPercent: -10 },
+          {
+            yPercent: 10,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        );
+      });
 
-                        <div className='prj-discription'>
-                            Textrovert is a dynamic chat application enabling real-time communication through text and voice messages. With expressive features like stickers, GIFs, and multimedia sharing (images, documents, videos, audio files, and location sharing), coordinating plans and sharing important information becomes seamless. Stay organized with online/offline status checks, searchability of previous messages, and the convenience of viewing YouTube videos directly within the chat window. Additionally, a typing indication feature ensures engaged conversations and prompt responses. Experience the power of Textrovert for enhanced connectivity and engagement in your personal and professional interactions.
-                        </div>
-                        <div className='prj-button'>
-                            <Link href='https://github.com/vatchans/Textrovert--Chat-App-' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-                            <Link href='https://exquisite-selkie-1bc399.netlify.app/ ' target='_blank'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
-                        </div>
-                    </div></Fade>
+      // 3. Project cards smooth entrance — NEVER blank, always visible
+      const cards = container.querySelectorAll('.project-grid-card');
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { y: 40, opacity: 0.45, scale: 0.98 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 92%',
+              end: 'top 65%',
+              scrub: 1.0,
+            },
+          }
+        );
+      });
 
-                    <Fade><div className='prj-card'>
-                        <div className='prj-img'>
-                            <video muted={true} playsinline="" autoplay="" loop={true}>
-                                <source src='Milky Way Taste the goodness of dairy Power - Google Chrome 2023-05-16 18-12-00.mp4' />
-                            </video>
-                        </div>
-                        <div className="prj-title">
-                            <p>Milky way<span>&nbsp;&nbsp;&nbsp;CRM Application</span></p>
-                            <div className='prj-logo'><img src='android-chrome-192x192.png'></img></div>
-                        </div>
+      // 4. Parallax layers
+      cleanupParallax = initParallaxLayers(container);
+    }, containerRef);
 
-                        <div className='prj-discription'>
-                            I have developed a Customer Relationship Management (CRM) application for Milky way Dairy Farm's website, catering to three user roles: Admin, Customer, and Customer Executive. The Admin manages customer orders and product inventory through a secure dashboard, while the Customer can browse and purchase products, register complaints, and make secure payments. The Customer Executive handles customer complaints, progressing through stages of pending, processing, and resolved, with notifications sent to customers via email.
-                            {/*  */}
-                            This CRM application optimizes customer interactions and support for Milky Dairy Farm, fostering growth and relationship-building.
-                        </div>
-                        <div className='prj-button'>
-                            <Link href='https://github.com/vatchans/Capstone-Project' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-                            <Link href='https://643ea8b337e85d037ff07afe--venerable-marigold-437243.netlify.app/' target='_blank'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
-                        </div>
-                    </div>
-                    </Fade>
+    return () => {
+      cleanupParallax();
+      ctx.revert();
+    };
+  }, [filtered]);
 
-                    <Fade> <div className='prj-card'>
-                        <div className='prj-img'>
-                            <video muted={true} playsinline="" autoplay="" loop={true}>
-                                <source src='Rthymn - Google Chrome 2023-05-16 18-07-17.mp4' />
-                            </video>
-                        </div>
-                        <div className="prj-title">
-                            <p>Rhythm <span>  Music streaming Application </span></p>
-                            <div className='prj-logo'><img src='A.png'></img></div>
-                        </div>
+  return (
+    <section id="projects" className="abt projects-section-wrapper" ref={containerRef} aria-label="Projects section">
+      {/* Background ambient lighting */}
+      <div
+        className="section-ambient-glow"
+        data-speed="0.4"
+        style={{
+          position: 'absolute',
+          top: '25%',
+          right: '-10%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
 
-                        <div className='prj-discription'>
-                            Rhythm is a versatile music streaming application that offers a range of features to enhance your music experience. With Rhythm, you can easily play music, create personalized playlists, and stream tracks based on your preferred genres and artists. Enjoy the convenience of accessing your favorite tunes anytime and anywhere, making Rhythm your go-to platform for all your musical needs. Elevate your music journey with Rhythm, the ultimate companion for music enthusiasts.
-                            Whether you're in the mood for energetic beats or soothing melodies, Rhythm caters to every musical taste.
-                            discover new songs, explore different genres, and dive into the world of music like never before.
-                            Experience the joy of music with Rhythm
-                        </div>
-                        <div className='prj-button'>
-                            <Link href='https://magical-taffy-0e39f9.netlify.app/' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-                            <Link href='https://magical-taffy-0e39f9.netlify.app/ ' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
-                        </div>
-                    </div>
-                    </Fade>
-                    <Fade>
-                        <div className='prj-card'>
-                            <div className='prj-img'>
-                                <video muted={true} playsinline="" autoplay="" loop={true}>
-                                    <source src='JuZslayy - Google Chrome 2023-05-16 18-33-35.mp4' />
-                                </video>
-                            </div>
-                            <div className="prj-title">
-                                <p>Juzslayy <span> Ecommerce website </span></p>
-                                <div className='prj-logo'><img src='20220816_165053_0000 (1).png'></img></div>
-                            </div>
+      {/* Header */}
+      <div className="uniform-section-header projects-header-anim" data-speed="1.15">
+        <h1 className="uniform-section-title">Featured Projects</h1>
+        <div className="uniform-title-bar" />
+        <p className="section-subtitle">
+          Interactive showcase of production platforms, real-time architectures, and award-winning systems
+        </p>
+      </div>
 
-                            <div className='prj-discription'>
-                                Juzslayy is your ultimate online destination for exquisite sarees. Discover a captivating collection featuring a wide variety of styles, fabrics, and designs. With Juzslayy, effortlessly explore and add your favorite sarees to your cart, allowing you to curate your perfect ensemble.
+      {/* Filter tabs */}
+      <div className="projects-filter proj-filter-tabs" role="group" aria-label="Filter projects">
+        {types.map((type) => (
+          <button
+            key={type}
+            className={`filter-btn ${filter === type ? 'filter-btn--active' : ''}`}
+            onClick={() => setFilter(type)}
+            aria-pressed={filter === type}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
 
-                                Experience a seamless shopping journey with our secure and convenient checkout process, offering various payment options for a smooth transaction. Additionally, Juzslayy offers a user-friendly wishlist feature, enabling you to save sarees that catch your eye for future consideration and purchase.
-                            </div>
-                            <div className='prj-button'>
-                                <Link href='https://github.com/vatchans/mini-project' target='_blank' ><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }} >Source&nbsp;<GitHubIcon /></Button></Link>
-                                <Link href='https://regal-maamoul-9c11df.netlify.app/' target='_blank'><Button className='resume-btn' style={{ color: "white", textTransform: "none", fontFamily: "'Montserrat', sans-serif", fontWeight: "700" }}>Open</Button></Link>
-                            </div>
-                        </div></Fade>
-                    <Fade>
-                        <div className='prj-card'>
-                            <div className='prj-img'><img src='Screenshot (53).png' style={{ objectFit: "contain" }}></img></div>
-                            <div className="prj-title">
-                                <p>Smart water tank<span> Monitoring system</span></p>
-                                <div className='prj-logo'><img src='Dolphine Logo 2.png'></img></div>
-                            </div>
-
-                            <div className='prj-discription'>
-                                Smart Water Tank is a clever monitoring system that combines real
-                                time usage data and current tank level states to predict how many days of supply
-                                are left. The system integrates with a web application to give users an alert
-                                message when the water starts to run low, so they can arrange a water delivery
-                                if needed.
-                                An alert message will be sent to the users email address, if the water level
-                                of the tank is lesser to the sensor. Sensor will be attached on the top surface of
-                                the water tank. This process will be very useful for the apartment peoples and
-                                old aged peoples who can't walk and go to check water level in tank if it is full
-                                or if it is less and not sufficient for the use daily usage. Motors can be operated
-                                on and off using our web application which we have created. Monthly usage can
-                                be viewed in the website. Monthly bills can be viewed. Every minute the water
-                                level will be updated in the website. Whenever, we needed to check the water
-                                level we can take a look of it when it is necessary.
-                            </div>
-                        </div>
-                    </Fade>
-
-                </div>
-            </Fade>
-        </div>
-    );
+      {/* Responsive Grid */}
+      <div className="projects-grid">
+        {filtered.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default ProjectsSection;
